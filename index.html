@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yash Grocery Store</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background: #e65100;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top:0;
+      z-index:1000;
+    }
+    header h1 {font-size: 1.8rem;}
+    nav ul {list-style:none; display:flex; gap:15px;}
+    nav ul li a {
+      color:white; text-decoration:none; font-weight:bold;
+      padding:6px 12px; border-radius:5px;
+      transition:0.3s;
+    }
+    nav ul li a:hover {background:white; color:#e65100;}
+
+    /* Hero */
+    .hero {
+      background:url("https://images.unsplash.com/photo-1600320841805-1e6c6e98b8f5") center/cover no-repeat;
+      height: 45vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:white; padding:20px;
+    }
+    .hero h2 {
+      font-size:2.5rem; text-shadow:2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Products */
+    .products {padding:40px 20px; text-align:center;}
+    .products h2 {color:#bf360c; margin-bottom:20px;}
+    .product-list {
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+    .product {
+      background:white; padding:15px; border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+    .product:hover {transform:translateY(-5px);}
+    .product img {
+      width:100%; height:150px; object-fit:cover; border-radius:8px;
+    }
+    .product h3 {margin:10px 0; color:#e65100;}
+    .btn {
+      background:#e65100; color:white; border:none;
+      padding:8px 12px; border-radius:5px; cursor:pointer;
+      transition:0.3s;
+    }
+    .btn:hover {background:#bf360c;}
+
+    /* Cart */
+    .cart {padding:40px 20px; background:#fff3e0;}
+    .cart h2 {color:#e65100; margin-bottom:20px; text-align:center;}
+    table {width:100%; border-collapse:collapse; margin-bottom:20px;}
+    table th, table td {padding:10px; border:1px solid #ddd; text-align:center;}
+    .total {text-align:right; font-weight:bold; font-size:1.2rem; margin-top:10px;}
+    .checkout-btn {
+      display:block; margin:20px auto; padding:10px 20px;
+      background:#2e7d32; color:white; border:none; border-radius:5px;
+      cursor:pointer; transition:0.3s;
+    }
+    .checkout-btn:hover {background:#1b5e20;}
+
+    /* Footer */
+    footer {
+      background:#e65100; color:white;
+      text-align:center; padding:15px; margin-top:30px;
+    }
+
+    @media(max-width:600px){
+      nav ul {flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Yash Grocery Store </h1>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#cart">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <h2>Fresh & Affordable Groceries Delivered 🚚</h2>
+  </section>
+
+  <!-- Products -->
+  <section class="products" id="products">
+    <h2>Our Products</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="./httpsimages.unsplash.comphoto-1621996346564-f9a4a9619a6b.jpg" alt="Rice">
+        <h3>Rice</h3>
+        <p>₹60 / kg</p>
+        <button class="btn" onclick="addToCart('Rice',60)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./wheat.jpg" alt="Wheat">
+        <h3>Wheat</h3>
+        <p>₹55 / kg</p>
+        <button class="btn" onclick="addToCart('Wheat',55)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./6f02672ae15208be8d255c26700e2343.jpg" alt="Cooking Oil">
+        <h3>Cooking Oil</h3>
+        <p>₹150 / liter</p>
+        <button class="btn" onclick="addToCart('Cooking Oil',150)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./moong dal.jpg" alt="Moong Dal">
+        <h3>Moong Dal</h3>
+        <p>₹120 / kg</p>
+        <button class="btn" onclick="addToCart('Moong Dal',120)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./chana dal.jpg" alt="Chana Dal">
+        <h3>Chana Dal</h3>
+        <p>₹90 / kg</p>
+        <button class="btn" onclick="addToCart('Chana Dal',90)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./chips.jpg" alt="Chips">
+        <h3>Chips</h3>
+        <p>₹20 / pack</p>
+        <button class="btn" onclick="addToCart('Chips',20)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./biscuits.jpg" alt="Biscuits">
+        <h3>Biscuits</h3>
+        <p>₹30 / pack</p>
+        <button class="btn" onclick="addToCart('Biscuits',30)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./dry fruits.jpg" alt="Dry Fruits">
+        <h3>Dry Fruits</h3>
+        <p>₹500 / kg</p>
+        <button class="btn" onclick="addToCart('Dry Fruits',500)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./sope.jpg" alt="Soaps">
+        <h3>Soaps</h3>
+        <p>₹40 / piece</p>
+        <button class="btn" onclick="addToCart('Soaps',40)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./shampoo.jpg" alt="Shampoo">
+        <h3>Shampoo</h3>
+        <p>₹120 / bottle</p>
+        <button class="btn" onclick="addToCart('Shampoo',120)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="./chocolate.jpg" alt="Chocolate">
+        <h3>Chocolate</h3>
+        <p>₹120 / bottle</p>
+        <button class="btn" onclick="addToCart('Chocolate',120)">Add to Cart</button>
+      </div>
+     <div class="product">
+        <img src="./milk bottle.jpg" alt="Milk">
+        <h3>Milk</h3>
+        <p>₹120 / bottle</p>
+        <button class="btn" onclick="addToCart('Milk',120)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart -->
+  <section class="cart" id="cart">
+    <h2>🛒 Your Cart</h2>
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price (₹)</th>
+          <th>Quantity</th>
+          <th>Subtotal (₹)</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="total" id="totalPrice">Total: ₹0</div>
+    <button class="checkout-btn" onclick="checkout()">✅ Checkout</button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>📍 Location: Sarsoli, Roha, Maharashtra, India</p>
+    <p>📞 Contact: +91 98765 43210</p>
+    <p>&copy; 2025 Yash Grocery. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      let item = cart.find(i => i.name === name);
+      if(item){
+        item.quantity++;
+      } else {
+        cart.push({name, price, quantity:1});
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      let tbody = document.querySelector("#cartTable tbody");
+      tbody.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item,index)=>{
+        let subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        let row = `
+          <tr>
+            <td>${item.name}</td>
+            <td>₹${item.price}</td>
+            <td><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index},this.value)"></td>
+            <td>₹${subtotal}</td>
+            <td><button class="btn" onclick="removeItem(${index})">❌</button></td>
+          </tr>
+        `;
+        tbody.innerHTML += row;
+      });
+
+      document.getElementById("totalPrice").innerText = "Total: ₹" + total;
+    }
+
+    function updateQuantity(index,value) {
+      cart[index].quantity = parseInt(value);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index,1);
+      renderCart();
+    }
+
+    function checkout() {
+      if(cart.length===0){
+        alert("⚠️ Your cart is empty!");
+        return;
+      }
+      alert("✅ Thank you for shopping with Yash Grocery Store!\nYour order has been placed.");
+      cart = [];
+      renderCart();
+    }
+  </script>
+
+</body>
+</html>
